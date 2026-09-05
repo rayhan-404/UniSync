@@ -1,0 +1,6 @@
+{
+  "name": "UniSync - Academic Notifier And Community Platform",
+  "description": "University class routine, CTs, assignments, lab reminders, and academic community platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
