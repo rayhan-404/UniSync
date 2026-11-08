@@ -59,10 +59,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ui.theme.BaseBackground
+import com.example.ui.theme.DeepOrangeAccent
+import com.example.ui.theme.DeepOrangeContainer
+import com.example.ui.theme.DeepOrangePrimary
+import com.example.ui.theme.DeepOrangeSecondary
 import com.example.ui.theme.MainText
 import com.example.ui.theme.NeumorphicHighlightLight
 import com.example.ui.theme.NeumorphicShadowDark
 import com.example.ui.theme.SecondaryGreen
+import androidx.compose.material.icons.filled.AdminPanelSettings
+import androidx.compose.material.icons.outlined.AdminPanelSettings
 import com.example.ui.theme.SecondaryText
 
 sealed class BottomNavTab(
@@ -91,6 +97,8 @@ fun AppHeader(
     subTitle: String = "Timer",
     profilePicUri: String? = null,
     avatarPreset: String = "grad_cap",
+    isAdmin: Boolean = false,
+    onAdminClick: () -> Unit = {},
     onNotificationClick: () -> Unit = {},
     onHeaderClick: () -> Unit = {}
 ) {
@@ -118,7 +126,7 @@ fun AppHeader(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // Left: Logo + App Name + "● Live" Badge + Subtitle
+            // Left: Logo + App Name + Subtitle
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -137,8 +145,8 @@ fun AppHeader(
                             .background(
                                 Brush.linearGradient(
                                     listOf(
-                                        Color(0xFFEDE7F6),
-                                        Color(0xFFE1BEE7)
+                                        DeepOrangeContainer,
+                                        DeepOrangeContainer.copy(alpha = 0.7f)
                                     )
                                 )
                             ),
@@ -151,14 +159,14 @@ fun AppHeader(
                             Icon(
                                 imageVector = Icons.Default.School,
                                 contentDescription = "App Logo",
-                                tint = Color(0xFF673AB7),
+                                tint = DeepOrangePrimary,
                                 modifier = Modifier.size(20.dp)
                             )
                             Text(
-                                text = "ACADEMATE",
+                                text = "UNISYNC",
                                 fontSize = 5.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF512DA8),
+                                color = DeepOrangeSecondary,
                                 letterSpacing = 0.4.sp
                             )
                         }
@@ -186,11 +194,37 @@ fun AppHeader(
                 }
             }
 
-            // Right: Circular Neumorphic Notification Bell + Circular Avatar with Gradient Ring
+            // Right: Admin Shortcut Badge (if Admin) + Circular Bell + Avatar
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(14.dp)
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
+                if (isAdmin) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(DeepOrangePrimary.copy(alpha = 0.12f))
+                            .clickable(onClick = onAdminClick)
+                            .padding(horizontal = 9.dp, vertical = 6.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = Icons.Default.AdminPanelSettings,
+                                contentDescription = "Admin",
+                                tint = DeepOrangePrimary,
+                                modifier = Modifier.size(15.dp)
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = "ADMIN",
+                                fontSize = 10.5.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = DeepOrangePrimary
+                            )
+                        }
+                    }
+                }
                 // 1. Circular Neumorphic Notification Bell Button
                 Box(
                     modifier = Modifier
@@ -211,12 +245,12 @@ fun AppHeader(
                     Icon(
                         imageVector = Icons.Outlined.Notifications,
                         contentDescription = "Notifications",
-                        tint = Color(0xFF2C3E50),
+                        tint = DeepOrangePrimary,
                         modifier = Modifier.size(20.dp)
                     )
                 }
 
-                // 2. Circular Profile Picture with Vibrant Blue-Purple Gradient Ring
+                // 2. Circular Profile Picture with Vibrant Deep Orange Gradient Ring
                 Box(
                     modifier = Modifier
                         .size(44.dp)
@@ -228,7 +262,7 @@ fun AppHeader(
                         .testTag("user_profile_header"),
                     contentAlignment = Alignment.Center
                 ) {
-                    // Gradient Outer Ring
+                    // Gradient Outer Ring in Material Deep Orange
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
@@ -236,10 +270,10 @@ fun AppHeader(
                             .background(
                                 Brush.sweepGradient(
                                     listOf(
-                                        Color(0xFF2196F3),
-                                        Color(0xFF9C27B0),
-                                        Color(0xFFE91E63),
-                                        Color(0xFF2196F3)
+                                        DeepOrangePrimary,
+                                        DeepOrangeSecondary,
+                                        DeepOrangeAccent,
+                                        DeepOrangePrimary
                                     )
                                 )
                             )
@@ -253,8 +287,8 @@ fun AppHeader(
                                 .background(
                                     Brush.linearGradient(
                                         listOf(
-                                            Color(0xFF1E88E5),
-                                            Color(0xFF7B1FA2)
+                                            DeepOrangePrimary,
+                                            DeepOrangeSecondary
                                         )
                                     )
                                 ),
