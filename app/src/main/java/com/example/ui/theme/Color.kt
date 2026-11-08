@@ -2,29 +2,27 @@ package com.example.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Exact Color Tokens from User Design Reference
-// Light Mode Tokens
-val LightBg = Color(0xFFF3EEFA)       // --bg: #f3eefa
-val LightBg2 = Color(0xFFEDE5F7)      // --bg2: #ede5f7
-val LightBg3 = Color(0xFFE4D8F0)      // --bg3: #e4d8f0
-val LightNl = Color(0xFFFFFFFF)       // --nl: #ffffff (crisp white specular highlight)
-val LightNd = Color(0xFFBFACDA)       // --nd: deep soft lavender shadow for rich 3D embossing
-val LightSurface = Color(0xFFF3EEFA)
-val LightText = Color(0xFF1C0030)      // --text: #1c0030
-val LightText2 = Color(0xFF6D4C80)     // --text2: #6d4c80
-val LightText3 = Color(0xFFA07CB8)     // --text3: #a07cb8
+// Light Mode Tokens (Clean Warm Tone for Material Deep Orange)
+val LightBg = Color(0xFFFBF9F8)       // Soft clean background
+val LightBg2 = Color(0xFFF7F1EE)      // Inset / card variant
+val LightBg3 = Color(0xFFF0E5DF)      // Secondary card variant
+val LightNl = Color(0xFFFFFFFF)       // Crisp white highlight
+val LightNd = Color(0xFFDCC8BE)       // Soft warm shadow for embossing
+val LightSurface = Color(0xFFFBF9F8)
+val LightText = Color(0xFF261208)      // Deep warm text
+val LightText2 = Color(0xFF6B4533)     // Subtitle text
+val LightText3 = Color(0xFFA57D68)     // Muted text
 
-// Dark Mode Tokens
-val DarkBg = Color(0xFF120820)        // --bg: #120820
-val DarkBg2 = Color(0xFF1C1130)       // --bg2: #1c1130
-val DarkBg3 = Color(0xFF261640)       // --bg3: #261640
-val DarkNl = Color(0xFF33204E)        // --nl: bright highlight for dark neumorphism
-val DarkNd = Color(0xFF06020D)        // --nd: rich deep shadow in dark mode
-val DarkSurface = Color(0xFF120820)
-val DarkText = Color(0xFFF0E6FF)       // --text: #f0e6ff
-val DarkText2 = Color(0xFFC9A8F0)      // --text2: #c9a8f0
-val DarkText3 = Color(0xFF8A6AAA)      // --text3: #8a6aaa
-
+// Dark Mode Tokens (Rich Dark Warm Tone)
+val DarkBg = Color(0xFF1A110E)        // Dark warm background
+val DarkBg2 = Color(0xFF241814)       // Dark card variant
+val DarkBg3 = Color(0xFF33221C)       // Dark inset variant
+val DarkNl = Color(0xFF422C24)        // Specular highlight for dark neumorphism
+val DarkNd = Color(0xFF0D0806)        // Deep dark shadow
+val DarkSurface = Color(0xFF1A110E)
+val DarkText = Color(0xFFFDEEE9)       // Crisp light text
+val DarkText2 = Color(0xFFDDB5A5)      // Subtitle text
+val DarkText3 = Color(0xFFA88270)      // Muted text
 
 // Aliases for default light neumorphic theme
 val BaseBackground = LightBg
@@ -34,25 +32,26 @@ val MutedText = LightText3
 val NeumorphicShadowDark = LightNd
 val NeumorphicHighlightLight = LightNl
 
-// Core Accents
-val PrimaryPurple = Color(0xFF9C27B0)  // --primary: #9c27b0
-val PrimaryPurple2 = Color(0xFFAB47BC) // --primary2: #ab47bc
-val AccentMagenta = Color(0xFFE040FB)  // --accent: #e040fb
-val SuccessGreen = Color(0xFF4CAF50)   // --success: #4caf50
-val WarnOrange = Color(0xFFFF9800)     // --warn: #ff9800
-val InfoBlue = Color(0xFF2196F3)       // --info: #2196f3
+// Material Deep Orange Accent Tokens
+val DeepOrangePrimary = Color(0xFFFF5722)     // Material Deep Orange Primary
+val DeepOrangeSecondary = Color(0xFFFF7043)   // Deep Orange Light Variant
+val DeepOrangeAccent = Color(0xFFFF8A65)      // Deep Orange Accent
+val DeepOrangeContainer = Color(0xFFFFEBE5)   // Light Tinted Container
 
-// Backward-compat aliases
-val PrimaryBlue = PrimaryPurple
-val PrimaryMediumBlue = PrimaryPurple2
+// Core Accents & Backward-compat aliases mapped to Deep Orange
+val PrimaryPurple = DeepOrangePrimary
+val PrimaryPurple2 = DeepOrangeSecondary
+val AccentMagenta = DeepOrangeAccent
+val PrimaryBlue = DeepOrangePrimary
+val PrimaryMediumBlue = DeepOrangeSecondary
 val PrimaryLight = LightBg2
-val PrimaryFixedDim = Color(0xFFD1C4E9)
-val SecondaryGreen = SuccessGreen
-val SecondaryLight = Color(0xFFC8E6C9)
-val TertiaryPurple = PrimaryPurple
-val PurpleAccent = AccentMagenta
+val PrimaryFixedDim = Color(0xFFFFCCBC)
+val SecondaryGreen = Color(0xFF4CAF50)
+val SecondaryLight = Color(0xFFE8F5E9)
+val TertiaryPurple = DeepOrangePrimary
+val PurpleAccent = DeepOrangeAccent
 val PurpleLight = LightBg3
-val ErrorRed = Color(0xFFF44336)
+val ErrorRed = Color(0xFFE53935)
 val ErrorLight = Color(0xFFFFEBEE)
 
 // Surface references
@@ -66,7 +65,7 @@ val DarkSurfaceVariant = DarkBg2
 val DarkOnSurface = DarkText
 val DarkTextSubtle = DarkText2
 
-// Dynamic Color Cycler Presets matching reference Material Colors
+// Only Material Deep Orange Theme Preset
 data class CustomColorTheme(
     val name: String,
     val primary: Color,
@@ -75,17 +74,10 @@ data class CustomColorTheme(
 )
 
 val ColorThemePresets = listOf(
-    CustomColorTheme("Material Purple", Color(0xFF9C27B0), Color(0xFFAB47BC), Color(0xFFE040FB)),
-    CustomColorTheme("Material Indigo", Color(0xFF3F51B5), Color(0xFF5C6BC0), Color(0xFF7986CB)),
-    CustomColorTheme("Material Teal", Color(0xFF009688), Color(0xFF26A69A), Color(0xFF80CBC4)),
-    CustomColorTheme("Material Deep Orange", Color(0xFFFF5722), Color(0xFFFF7043), Color(0xFFFF8A65)),
-    CustomColorTheme("Material Pink", Color(0xFFE91E63), Color(0xFFEC407A), Color(0xFFF48FB1)),
-    CustomColorTheme("Material Cyan", Color(0xFF00BCD4), Color(0xFF26C6DA), Color(0xFF80DEEA)),
-    CustomColorTheme("Material Amber", Color(0xFFFF9800), Color(0xFFFFA726), Color(0xFFFFD54F)),
-    CustomColorTheme("Material Deep Purple", Color(0xFF673AB7), Color(0xFF7E57C2), Color(0xFFB39DDB)),
-    CustomColorTheme("Material Green", Color(0xFF4CAF50), Color(0xFF66BB6A), Color(0xFFA5D6A7)),
-    CustomColorTheme("Material Blue", Color(0xFF2196F3), Color(0xFF42A5F5), Color(0xFF90CAF9))
+    CustomColorTheme(
+        name = "Material Deep Orange",
+        primary = DeepOrangePrimary,
+        primary2 = DeepOrangeSecondary,
+        accent = DeepOrangeAccent
+    )
 )
-
-
-
